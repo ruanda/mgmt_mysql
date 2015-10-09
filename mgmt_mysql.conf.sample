@@ -1,0 +1,16 @@
+{
+  "hypnotoad" : {
+    "listen" : [ "http://127.0.0.1:3000" ],
+    "proxy" : 1,
+    "workers" : 1
+  },
+  "app" : {
+    "secret" : "XXX"
+  },
+  "db" : {
+    "host" : "X",
+    "dsn" : "dbi:mysql:;host=X",
+    "user" : "root",
+    "password" : "X"
+  }
+}
