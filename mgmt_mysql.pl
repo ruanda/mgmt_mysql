@@ -154,6 +154,21 @@ post '/mysql/databases' => sub {
     $c->rendered(204);
 };
 
+del '/mysql/databases/#name' => sub {
+    my $c = shift;
+
+    my $name = $req->{name};
+    
+    if ($name eq 'mysql') {
+        $c->render(json => { error => 'Bad database: mysql' }, status => 403);
+        return;
+    }
+
+    $DRH->func('dropdb', $DB->quote_identifier($name), $config->{db}->{host}, $config->{db}->{user}, $config->{db}->{password}, 'admin');
+
+    $c->rendered(204);
+};
+
 any '/*any' => { any => ''} => sub {
     my $c = shift;
     $c->rendered(404);
