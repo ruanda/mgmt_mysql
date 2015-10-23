@@ -157,7 +157,7 @@ post '/mysql/databases' => sub {
 del '/mysql/databases/#name' => sub {
     my $c = shift;
 
-    my $name = $req->{name};
+    my $name = $c->param('name');
     
     if ($name eq 'mysql') {
         $c->render(json => { error => 'Bad database: mysql' }, status => 403);
