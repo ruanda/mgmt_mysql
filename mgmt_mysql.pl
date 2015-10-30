@@ -173,6 +173,11 @@ del '/mysql/databases/#name' => sub {
         $config->{db}->{password}, 'admin'
     );
 
+    my $sth = $DB->prepare_cached("DELETE FROM mysql.db WHERE db = ?");
+    $sth->execute($name);
+
+    $DB->do('flush privileges');
+
     $c->rendered(204);
 };
 
